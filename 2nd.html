@@ -1,0 +1,212 @@
+<html>
+	<head>
+		<title>Piano</title>
+		<style>
+			body{
+				background-image: url("pink-freud.jpg");
+			}
+			#keys{
+
+				margin:100px 1000px 0px 30px
+
+			}
+			#keysup{
+				margin:200px 500px
+			}
+
+			.keyup{
+				width: 10px;
+    		height: 100px;
+				border: 4px solid white;
+				border-radius: 5px;
+				margin: 1rem;
+				font-size: 1.5rem;
+				padding: 1rem .5rem;
+				padding-right: 1.25rem;
+				text-align: center;
+			  text-shadow: 10px 10px 20px yellow;
+				transition: all 0.07s;
+				color: grey;
+				float:left;
+			}
+
+			.key{
+				width: 10px;
+    		height: 100px;
+				border: 4px solid white;
+				border-radius: 5px;
+				margin: 1.5rem;
+				font-size: 1.5rem;
+				padding: 1rem .5rem;
+				padding-right: 1.25rem;
+				text-align: center;
+			  text-shadow: 10px 10px 20px yellow;
+				transition: all 0.07s;
+				color: white;
+				float:left;
+			}
+			.playing{
+				transform: scale(1.2);
+				border-color:#ffc600;
+				box-shadow: 0 0 10px #ffc600;
+			}
+
+			kbd{
+				display:block;
+				font-size:40px;
+			}
+
+		</style>
+	</head>
+
+	<body >
+
+		<div id ='keysup'>
+			<div id ='q' class='keyup'>
+				<kbd>Q</kbd>
+				<span class='sound'>C</span>
+			</div>
+			<div id = 'w' class='keyup'>
+				<kbd>W</kbd>
+				<span class='sound'>D</span>
+			</div>
+			<div id = 'e' class='keyup'>
+				<kbd>E</kbd>
+				<span class='sound'>E</span>
+			</div>
+			<div id ='r' class='keyup'>
+				<kbd>R</kbd>
+				<span class='sound'>F</span>
+			</div>
+			<div id = 't' class='keyup'>
+				<kbd>T</kbd>
+				<span class='sound'>G</span>
+			</div>
+
+		</div>
+
+		<div id='keys'>
+
+			<div id ='a'class='key'>
+				<kbd>A</kbd>
+				<span class='sound'>C</span>
+			</div>
+			<div id = 's' class='key'>
+				<kbd>S</kbd>
+				<span class='sound'>D</span>
+			</div>
+			<div id = 'd' class='key'>
+				<kbd>D</kbd>
+				<span class='sound'>E</span>
+			</div>
+			<div id ='f' class='key'>
+				<kbd>F</kbd>
+				<span class='sound'>F</span>
+			</div>
+			<div id = 'g' class='key'>
+				<kbd>G</kbd>
+				<span class='sound'>G</span>
+			</div>
+			<div id = 'h' class='key'>
+				<kbd>H</kbd>
+				<span class='sound'>A</span>
+			</div>
+			<div id = 'j' class='key'>
+				<kbd>J</kbd>
+				<span class='sound'>B</span>
+			</div>
+			<div id = 'k' class='key'>
+				<kbd>K</kbd>
+				<span class='sound'>C</span>
+			</div>
+
+		</div>
+
+
+
+
+		<div id='sounds'>
+		<audio id='a' src='wav/c1.wav'></audio>
+		<audio id='s' src='wav/d1.wav'></audio>
+		<audio id='d' src='wav/e1.wav'></audio>
+		<audio id='f' src='wav/f1.wav'></audio>
+		<audio id='g' src='wav/g1.wav'></audio>
+		<audio id='h' src='wav/a1.wav'></audio>
+		<audio id='j' src='wav/b1.wav'></audio>
+		<audio id='k' src='wav/c2.wav'></audio>
+
+		<audio id='q' src='wav/c1s.wav'></audio>
+		<audio id='w' src='wav/d1s.wav'></audio>
+		<audio id='e' src='wav/f1s.wav'></audio>
+		<audio id='r' src='wav/g1s.wav'></audio>
+		<audio id='t' src='wav/a1s.wav'></audio>
+
+
+
+		</div>
+
+<!--
+		<form name='formex'>
+		<input type = 'text' name='typed'/>Keyboard<br/>
+    <input type = 'text' name='typed1'/>saywhat<br/>
+		</form>
+
+-->
+
+
+
+
+
+		<script language='javascript' type='text/javascript'>
+      mouseX=4;
+      a='';
+
+      document.addEventListener("keydown", function(e) {
+        //alert("You clicked the white element!");
+        a='#'+e.key;
+      //  document.formex.typed1.value=a
+
+		//		document.getElementsByClassName('key')[0].classList.add('playing')
+		//	document.querySelector(a).classList.add('playing')
+			//	document.write(document.getElementsByClassName('key').length)
+				document.getElementById('keys').querySelector(a).classList.add('playing')
+			//	document.getElementById('keysup').querySelector(a).classList.add('playing')
+        var audi = document.getElementById('sounds').querySelector(a)
+			//	document.write(audi)
+      //  var audi = document.getElementById(a)
+        //var audi = document.querySelector(`audio[data-key='${e.keyCode}']`);
+        audi.currentTime=0
+        audi.play()
+				if(!audi) return
+				document.getElementById('keys').querySelector(a).addEventListener('transitionend',removeTransition)
+				//document.getElementById('keysup').querySelector(a).addEventListener('transitionend',removeTransition)
+
+      //  document.write(e.keyCode)
+
+      }, false);
+
+			function removeTransition(e){
+				if(e.propertyName!='transform')return;
+				this.classList.remove('playing');
+			}
+
+		//	kk = document.querySelectorAll('.key')
+		//	kk.map(x=>x.addEventListener('transitionend',removeTransition))
+
+		//	document.formex.typed.value=mouseX
+  //    document.formex.typed1.value=a
+
+
+
+		</script>
+
+
+
+
+
+
+
+
+
+	</body>
+</html>
